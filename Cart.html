@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            animation: slideInFromTop 1s ease-out forwards;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            opacity: 0;
+            animation: tableFadeIn 1s forwards;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #009688;
+            color: #fff;
+        }
+
+        table td {
+            background-color: #f9f9f9;
+            animation: slideInFromLeft 0.5s ease-out forwards;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+            animation: buttonFadeIn 1s ease-out forwards;
+        }
+
+        .btn {
+            position: relative;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: width 0.4s, height 0.4s, top 0.4s, left 0.4s;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn:hover::before {
+            width: 0;
+            height: 0;
+            top: 50%;
+            left: 50%;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes tableFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes buttonFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Keranjang Belanja</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Harga Satuan</th>
+                    <th>Kuantitas</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="cart-body">
+                <!-- Data produk akan diisi oleh JavaScript -->
+            </tbody>
+        </table>
+        <div class="button-container">
+            <a href="browse products.html" class="btn">Tambah Produk</a>
+            <a href="calculator.html" class="btn">Lanjut ke Kalkulator</a>
+        </div>
+        <div class="button-container">
+            <a href="index.html" class="btn">Kembali ke Halaman Utama</a>
+        </div>
+    </div>
+
+    <script>
+        // Data produk dalam keranjang (contoh data sementara)
+        const cart = [
+            { name: "Daging Sapi", price: 50000, quantity: 2 },
+            { name: "Paprika Merah", price: 20000, quantity: 3 },
+            { name: "Sayur Pakcoy", price: 10000, quantity: 5 }
+        ];
+
+        // Render data ke tabel
+        const cartBody = document.getElementById('cart-body');
+        cart.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.style.animation = `bounceIn 0.6s ease forwards ${index * 0.3}s`;  // Menambahkan delay animasi per baris
+
+            const nameCell = document.createElement('td');
+            nameCell.textContent = item.name;
+
+            const priceCell = document.createElement('td');
+            priceCell.textContent = `Rp${item.price.toLocaleString()}`;
+
+            const quantityCell = document.createElement('td');
+            quantityCell.textContent = item.quantity;
+
+            const totalCell = document.createElement('td');
+            const totalItemPrice = item.price * item.quantity;
+            totalCell.textContent = `Rp${totalItemPrice.toLocaleString()}`;
+
+            row.appendChild(nameCell);
+            row.appendChild(priceCell);
+            row.appendChild(quantityCell);
+            row.appendChild(totalCell);
+
+            cartBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>

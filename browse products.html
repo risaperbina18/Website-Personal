@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etalase Produk</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 1.1em;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .buy-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Keranjang Button */
+        .cart-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff7f50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .cart-button:hover {
+            background-color: #e76a35;
+        }
+
+        /* Keranjang Icon */
+        .cart-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff7f50;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .cart-icon span {
+            background-color: red;
+            border-radius: 50%;
+            padding: 5px 10px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 0.8em;
+        }
+
+        .cart-buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-button-with-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cart-button-with-icon i {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin-bottom: 20px;">Etalase Produk</h1>
+        <div class="product-grid">
+            <!-- Produk 1 -->
+            <div class="product-card">
+                <img src="daging.jpg" alt="Produk 1" class="product-image">
+                <div class="product-details">
+                    <div class="product-name">Produk 1</div>
+                    <div class="product-price">Rp50,000</div>
+                    <div class="cart-buttons-container">
+                        <a href="calculator.html" class="buy-button">Beli Sekarang</a>
+                        <button class="cart-button-with-icon" onclick="addToCart('Produk 1', 50000)">
+                            <i class="fas fa-shopping-cart"></i> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 2 -->
+            <div class="product-card">
+                <img src="daging2.jpg" alt="Produk 2" class="product-image">
+                <div class="product-details">
+                    <div class="product-name">Produk 2</div>
+                    <div class="product-price">Rp75,000</div>
+                    <div class="cart-buttons-container">
+                        <a href="calculator.html" class="buy-button">Beli Sekarang</a>
+                        <button class="cart-button-with-icon" onclick="addToCart('Produk 2', 75000)">
+                            <i class="fas fa-shopping-cart"></i> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 3 -->
+            <div class="product-card">
+                <img src="daging3.jpg" alt="Produk 3" class="product-image">
+                <div class="product-details">
+                    <div class="product-name">Produk 3</div>
+                    <div class="product-price">Rp100,000</div>
+                    <div class="cart-buttons-container">
+                        <a href="calculator.html" class="buy-button">Beli Sekarang</a>
+                        <button class="cart-button-with-icon" onclick="addToCart('Produk 3', 100000)">
+                            <i class="fas fa-shopping-cart"></i> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 4 -->
+            <div class="product-card">
+                <img src="daging4.jpg" alt="Produk 4" class="product-image">
+                <div class="product-details">
+                    <div class="product-name">Produk 4</div>
+                    <div class="product-price">Rp125,000</div>
+                    <div class="cart-buttons-container">
+                        <a href="calculator.html" class="buy-button">Beli Sekarang</a>
+                        <button class="cart-button-with-icon" onclick="addToCart('Produk 4', 125000)">
+                            <i class="fas fa-shopping-cart"></i> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 5 -->
+            <div class="product-card">
+                <img src="paprika.jpg" alt="Produk 5" class="product-image">
+                <div class="product-details">
+                    <div class="product-name">Produk 5</div>
+                    <div class="product-price">Rp20,000</div>
+                    <div class="cart-buttons-container">
+                        <a href="calculator.html" class="buy-button">Beli Sekarang</a>
+                        <button class="cart-button-with-icon" onclick="addToCart('Produk 5', 20000)">
+                            <i class="fas fa-shopping-cart"></i> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 6 -->
+            <div class="product-card">
+                <img src="pakcoy.jpg" alt="Produk 6" class="product-image">
+                <div class="product-details">
+                    <div class="product-name">Produk 6</div>
+                    <div class="product-price">Rp10,000</div>
+                    <div class="cart-buttons-container">
+                        <a href="calculator.html" class="buy-button">Beli Sekarang</a>
+                        <button class="cart-button-with-icon" onclick="addToCart('Produk 6', 10000)">
+                            <i class="fas fa-shopping-cart"></i> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 7 -->
+            <div class="product-card">
+                <img src="wortel.jpg" alt="Produk 7" class="product-image">
+                <div class="product-details">
+                    <div class="product-name">Produk 7</div>
+                    <div class="product-price">Rp15,000</div>
+                    <div class="cart-buttons-container">
+                        <a href="calculator.html" class="buy-button">Beli Sekarang</a>
+                        <button class="cart-button-with-icon" onclick="addToCart('Produk 7', 15000)">
+                            <i class="fas fa-shopping-cart"></i> 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="Cart.html" class="cart-button">Lihat Keranjang</a>
+    </div>
+
+    <!-- Keranjang Icon -->
+    <div class="cart-icon" onclick="window.location.href='cart.html'">
+        🛒
+        <span id="cart-count">0</span>
+    </div>
+
+    <script>
+        // Fungsi untuk menambah produk ke keranjang
+        let cart = [];
+
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price: price });
+            updateCartCount();
+        }
+
+        // Fungsi untuk memperbarui jumlah produk dalam keranjang
+        function updateCartCount() {
+            const cartCount = document.getElementById("cart-count");
+            cartCount.innerText = cart.length;
+        }
+    </script>
+</body>
+</html>
